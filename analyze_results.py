@@ -10,7 +10,7 @@ from IPython import embed
 
 simulation_output = 'Simulation/output/'
 sushi_output = 'Sushi/output/'
-num_sim_exps = 5
+num_sim_exps = 100
 num_sushi_exps = 400
 num_sushi_individuals = 5000
 plot_dir = 'Simulation/plots'
@@ -110,19 +110,19 @@ def compute_sushi_metrics():
 
 		# add train metrics
 		zero_one_start_metrics_train['amm'].append(float(mnl_metrics_instance[0]) - float(nl_metrics_01start_instance[0]))
-		zero_one_start_metrics_train['knitro'].append(float(mnl_metrics_instance[1]) - float(nl_metrics_01start_instance[1]))
-		zero_one_start_metrics_train['pgd'].append(float(mnl_metrics_instance[2]) - float(nl_metrics_01start_instance[2]))
+		zero_one_start_metrics_train['knitro'].append(float(mnl_metrics_instance[0]) - float(nl_metrics_01start_instance[1]))
+		zero_one_start_metrics_train['pgd'].append(float(mnl_metrics_instance[0]) - float(nl_metrics_01start_instance[2]))
 		warm_start_metrics_train['amm'].append(float(mnl_metrics_instance[0]) - float(nl_metrics_warmstart_instance[0]))
-		warm_start_metrics_train['knitro'].append(float(mnl_metrics_instance[1]) - float(nl_metrics_warmstart_instance[1]))
-		warm_start_metrics_train['pgd'].append(float(mnl_metrics_instance[2]) - float(nl_metrics_warmstart_instance[2]))
+		warm_start_metrics_train['knitro'].append(float(mnl_metrics_instance[0]) - float(nl_metrics_warmstart_instance[1]))
+		warm_start_metrics_train['pgd'].append(float(mnl_metrics_instance[0]) - float(nl_metrics_warmstart_instance[2]))
 
 		# add test metrics
 		zero_one_start_metrics_test['amm'].append(float(mnl_metrics_instance[3]) - float(nl_metrics_01start_instance[3]))
-		zero_one_start_metrics_test['knitro'].append(float(mnl_metrics_instance[4]) - float(nl_metrics_01start_instance[4]))
-		zero_one_start_metrics_test['pgd'].append(float(mnl_metrics_instance[5]) - float(nl_metrics_01start_instance[5]))
+		zero_one_start_metrics_test['knitro'].append(float(mnl_metrics_instance[3]) - float(nl_metrics_01start_instance[4]))
+		zero_one_start_metrics_test['pgd'].append(float(mnl_metrics_instance[3]) - float(nl_metrics_01start_instance[5]))
 		warm_start_metrics_test['amm'].append(float(mnl_metrics_instance[3]) - float(nl_metrics_warmstart_instance[3]))
-		warm_start_metrics_test['knitro'].append(float(mnl_metrics_instance[4]) - float(nl_metrics_warmstart_instance[4]))
-		warm_start_metrics_test['pgd'].append(float(mnl_metrics_instance[5]) - float(nl_metrics_warmstart_instance[5]))
+		warm_start_metrics_test['knitro'].append(float(mnl_metrics_instance[3]) - float(nl_metrics_warmstart_instance[4]))
+		warm_start_metrics_test['pgd'].append(float(mnl_metrics_instance[3]) - float(nl_metrics_warmstart_instance[5]))
 
 	# compute metrics for 0/1 start
 	print('Printing train metrics for 0/1 start')
@@ -134,10 +134,6 @@ def compute_sushi_metrics():
 	print([(method, num_sushi_individuals*np.mean(warm_start_metrics_train[method])) for method in warm_start_metrics_train])
 	print('Printing test metrics for warm start')
 	print([(method, num_sushi_individuals*np.mean(warm_start_metrics_test[method])) for method in warm_start_metrics_test])
-
-	# compute p-value of t-test significance
-	#print(negloggap_info.groupby(['degree', 'depth', 'lambda_lb']).apply(lambda df: ttest_rel(df['amm_gap'], df['pgd_gap'])[1]))
-	#print(negloggap_info.groupby(['degree', 'depth', 'lambda_lb']).apply(lambda df: ttest_rel(df['amm_gap'], df['knitro_gap'])[1]))
 
 
 def plot_negloggaps_vs_iters(degree, depth, lambda_lb):
@@ -196,7 +192,7 @@ def plot_negloggaps_vs_iters_single_file():
 
 
 if __name__ == "__main__":
-	plot_negloggaps_vs_iters(8, 5, 0.01)
+	# plot_negloggaps_vs_iters(8, 5, 0.01)
 	#plot_negloggaps_vs_iters_single_file()
 	#compute_simulation_metrics()
-	#compute_sushi_metrics()
+	compute_sushi_metrics()
