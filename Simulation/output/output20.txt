@@ -1,3 +1,0 @@
-depth,degree,lambda_lb,lambda_ub,method,ll_diff,rel_mu_err,rel_lambda_err,time,infeasible_lambdas,infeasible_type
-5,8,0.01,1,agd_mu_delta,41.8851,0.65764,0.59214,8854.0048,0,0
-5,8,0.01,1,test,2048.464,0.37868,0.84285,0.31551,0,0
