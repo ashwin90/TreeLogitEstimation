@@ -849,7 +849,7 @@
             
             % GD interation options
             %tol = 1e-16;
-            maxiter = 199;
+            maxiter = 49;
             
             % initialize 
             x = x0;
@@ -1513,7 +1513,7 @@
             
             % GD interation options
             %tol = 1e-16;
-            maxiter = 199;
+            maxiter = 299;
             
             % initialize 
             x_curr = x0;

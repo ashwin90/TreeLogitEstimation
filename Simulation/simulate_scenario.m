@@ -30,6 +30,7 @@ function simulate_scenario(output_file, num_levels, degree, n_offersets, max_sal
     metricsTypes = {'double', 'double', 'double'};
     addln_metrics = {'time', 'infeasible_lambdas', 'infeasible_type'};
     addln_metricsTypes = {'double', 'logical','double'};
+    %methods = {'fullback_mm', 'agd_mu_delta'};
     methods = {'fullback_mm','gdmu', 'knitro'};
     % create a MATLAB table of the metrics
     varNames = {'depth', 'degree', 'lambda_lb', 'lambda_ub', 'method'};
